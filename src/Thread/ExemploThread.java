@@ -16,7 +16,6 @@ public class ExemploThread {
 		Thread threadNotaFiscal = new Thread(thread2);
 		threadNotaFiscal.start();
 
-		
 		/* Código do sistema continua o fluxo de trabalho */
 		System.out.println("CHEGOU AO FIM DO CÓDIGO DE TESTE - THREAD!");
 		/*
