@@ -41,7 +41,6 @@ public class ExemploThread {
 				try {
 					Thread.sleep(2000); /* Aplica o tempo proposto */
 				} catch (InterruptedException e) {
-
 					e.printStackTrace();
 				}
 			}
@@ -65,7 +64,6 @@ public class ExemploThread {
 				try {
 					Thread.sleep(4000); /* Aplica o tempo proposto */
 				} catch (InterruptedException e) {
-
 					e.printStackTrace();
 				}
 			}
