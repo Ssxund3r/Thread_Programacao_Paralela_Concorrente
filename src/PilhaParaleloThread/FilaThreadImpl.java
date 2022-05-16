@@ -13,36 +13,40 @@ public class FilaThreadImpl extends Thread {
 
 	@Override
 	public void run() {
-		Iterator iteracao = pilhaFila.iterator();
 
-		synchronized (iteracao) { /*Bloquear o acesso a esta lista por outro processos*/
+		while (true) {
 
-			while (iteracao.hasNext()) { /* Enquanto conter dados na lista irá processar */
+			synchronized (pilhaFila) { /* Bloquear o acesso a esta lista por outro processo */
+				Iterator iteracao = pilhaFila.iterator();
 
-				ObjetoFilaThread processar = (ObjetoFilaThread) iteracao.next(); /* Pega o objeto atual */
+				while (iteracao.hasNext()) { /* Enquanto conter dados na lista irá processar */
 
-				/*
-				 * Processar 10k notas fiscais | Gerar uma lista enorme de PDF| 
-				 * Gerar um envio em massa de email
-				 */
-				System.out.println("------------------");
-				System.out.println(processar.getEmail());
-				System.out.println(processar.getNome());
-				iteracao.remove();
+					ObjetoFilaThread processar = (ObjetoFilaThread) iteracao.next(); /* Pega o objeto atual */
 
-				try {
-					Thread.sleep(100); /* Dar um tempo para descarga de memoria */
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+					/*
+					 * Processar 10k notas fiscais | Gerar uma lista enorme de PDF| Gerar um envio
+					 * em massa de email
+					 */
+					System.out.println("------------------");
+					System.out.println(processar.getEmail());
+					System.out.println(processar.getNome());
+					iteracao.remove();
+
+					try {
+						Thread.sleep(500); /* Dar um tempo para descarga de memoria */
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+
 				}
-
+			}
+			try {
+				Thread.sleep(1000); /* Processou toda a lista dar um tempo para limpeza de memória */
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 
-		try {
-			Thread.sleep(1000); /* Processou toda a lista dar um tempo para limpeza de memória */
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
+
 }

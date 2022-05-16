@@ -6,6 +6,17 @@ public class ObjetoFilaThread {
 
 	private String nome;
 	private String email;
+	
+	
+	public ObjetoFilaThread() {
+		
+	}
+	
+	public ObjetoFilaThread(String nome, String email) {
+		super();
+		this.nome = nome;
+		this.email = email;
+	}
 
 	public String getNome() {
 		return nome;
@@ -39,5 +50,12 @@ public class ObjetoFilaThread {
 		ObjetoFilaThread other = (ObjetoFilaThread) obj;
 		return Objects.equals(email, other.email) && Objects.equals(nome, other.nome);
 	}
+
+	@Override
+	public String toString() {
+		return "ObjetoFilaThread [nome=" + nome + ", email=" + email + "]";
+	}
+	
+	
 
 }
